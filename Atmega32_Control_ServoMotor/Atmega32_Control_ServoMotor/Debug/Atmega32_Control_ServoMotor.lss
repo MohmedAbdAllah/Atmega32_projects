@@ -1,0 +1,349 @@
+
+Atmega32_Control_ServoMotor.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000001f4  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  00000268  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000004  00800060  00800060  00000268  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000268  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000298  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000098  00000000  00000000  000002d4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   0000081f  00000000  00000000  0000036c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000068f  00000000  00000000  00000b8b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   0000047d  00000000  00000000  0000121a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  0000016c  00000000  00000000  00001698  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000003da  00000000  00000000  00001804  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000286  00000000  00000000  00001bde  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000068  00000000  00000000  00001e64  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   8:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  10:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  14:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  18:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  1c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  20:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  24:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  28:	0c 94 b7 00 	jmp	0x16e	; 0x16e <__vector_10>
+  2c:	0c 94 90 00 	jmp	0x120	; 0x120 <__vector_11>
+  30:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  34:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  38:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  3c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  40:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  44:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  48:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  4c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  50:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_clear_bss>:
+  60:	20 e0       	ldi	r18, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	01 c0       	rjmp	.+2      	; 0x6a <.do_clear_bss_start>
+
+00000068 <.do_clear_bss_loop>:
+  68:	1d 92       	st	X+, r1
+
+0000006a <.do_clear_bss_start>:
+  6a:	a4 36       	cpi	r26, 0x64	; 100
+  6c:	b2 07       	cpc	r27, r18
+  6e:	e1 f7       	brne	.-8      	; 0x68 <.do_clear_bss_loop>
+  70:	0e 94 57 00 	call	0xae	; 0xae <main>
+  74:	0c 94 f8 00 	jmp	0x1f0	; 0x1f0 <_exit>
+
+00000078 <__bad_interrupt>:
+  78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000007c <ADC_init>:
+**************************************************************************/
+void ADC_init(void){
+	//AVCC with external capacitor at AREF pin
+	//SETBIT(ADMUX,REFS0);
+	//Enable ADC
+	DDRA = 0x00;
+  7c:	1a ba       	out	0x1a, r1	; 26
+	SETBIT(ADCSRA,ADEN);
+  7e:	86 b1       	in	r24, 0x06	; 6
+  80:	80 68       	ori	r24, 0x80	; 128
+  82:	86 b9       	out	0x06, r24	; 6
+	//freq mode 128
+	SETBIT(ADCSRA,ADPS0);
+  84:	86 b1       	in	r24, 0x06	; 6
+  86:	81 60       	ori	r24, 0x01	; 1
+  88:	86 b9       	out	0x06, r24	; 6
+	SETBIT(ADCSRA,ADPS1);
+  8a:	86 b1       	in	r24, 0x06	; 6
+  8c:	82 60       	ori	r24, 0x02	; 2
+  8e:	86 b9       	out	0x06, r24	; 6
+	SETBIT(ADCSRA,ADPS2);
+  90:	86 b1       	in	r24, 0x06	; 6
+  92:	84 60       	ori	r24, 0x04	; 4
+  94:	86 b9       	out	0x06, r24	; 6
+	//Choose ADC7 as single ended input
+	ADMUX |= 0x07;
+  96:	87 b1       	in	r24, 0x07	; 7
+  98:	87 60       	ori	r24, 0x07	; 7
+  9a:	87 b9       	out	0x07, r24	; 7
+  9c:	08 95       	ret
+
+0000009e <ADC_read>:
+* Parameters   : void
+* Return value : converting value from ADC register
+**************************************************************************/
+uint16_t ADC_read(void){
+	//Start single conversion mode
+	SETBIT(ADCSRA,ADSC);
+  9e:	86 b1       	in	r24, 0x06	; 6
+  a0:	80 64       	ori	r24, 0x40	; 64
+  a2:	86 b9       	out	0x06, r24	; 6
+	//check if the conversion complete or not
+	while(READBIT(ADCSRA,ADSC) == 1);
+  a4:	36 99       	sbic	0x06, 6	; 6
+  a6:	fe cf       	rjmp	.-4      	; 0xa4 <ADC_read+0x6>
+	//read the ADC
+	return ADC;
+  a8:	84 b1       	in	r24, 0x04	; 4
+  aa:	95 b1       	in	r25, 0x05	; 5
+	
+	
+  ac:	08 95       	ret
+
+000000ae <main>:
+int main(void)
+{
+    /* Replace with your application code */
+	
+	uint32_t ADC_result = 0,ADC_old = 0;
+	ADC_init();
+  ae:	0e 94 3e 00 	call	0x7c	; 0x7c <ADC_init>
+	TIME0_PWM_init();
+  b2:	0e 94 80 00 	call	0x100	; 0x100 <TIME0_PWM_init>
+
+int main(void)
+{
+    /* Replace with your application code */
+	
+	uint32_t ADC_result = 0,ADC_old = 0;
+  b6:	81 2c       	mov	r8, r1
+  b8:	91 2c       	mov	r9, r1
+  ba:	54 01       	movw	r10, r8
+  bc:	02 c0       	rjmp	.+4      	; 0xc2 <main+0x14>
+#include "ADC.h"
+#include "TIMER0.h"
+
+
+int main(void)
+{
+  be:	46 01       	movw	r8, r12
+  c0:	57 01       	movw	r10, r14
+	TIME0_PWM_init();
+	
+    while (1) 
+    {
+		//the conversion ADC output
+		ADC_result = ADC_read();
+  c2:	0e 94 4f 00 	call	0x9e	; 0x9e <ADC_read>
+  c6:	6c 01       	movw	r12, r24
+  c8:	e1 2c       	mov	r14, r1
+  ca:	f1 2c       	mov	r15, r1
+		
+		if(ADC_result != ADC_old)
+  cc:	8c 14       	cp	r8, r12
+  ce:	9d 04       	cpc	r9, r13
+  d0:	ae 04       	cpc	r10, r14
+  d2:	bf 04       	cpc	r11, r15
+  d4:	a1 f3       	breq	.-24     	; 0xbe <main+0x10>
+			OCR0 = ((ADC_result*38)/1024)+31;
+  d6:	a6 e2       	ldi	r26, 0x26	; 38
+  d8:	b0 e0       	ldi	r27, 0x00	; 0
+  da:	a7 01       	movw	r20, r14
+  dc:	96 01       	movw	r18, r12
+  de:	0e 94 de 00 	call	0x1bc	; 0x1bc <__muluhisi3>
+  e2:	dc 01       	movw	r26, r24
+  e4:	cb 01       	movw	r24, r22
+  e6:	07 2e       	mov	r0, r23
+  e8:	7a e0       	ldi	r23, 0x0A	; 10
+  ea:	b6 95       	lsr	r27
+  ec:	a7 95       	ror	r26
+  ee:	97 95       	ror	r25
+  f0:	87 95       	ror	r24
+  f2:	7a 95       	dec	r23
+  f4:	d1 f7       	brne	.-12     	; 0xea <main+0x3c>
+  f6:	70 2d       	mov	r23, r0
+  f8:	6f e1       	ldi	r22, 0x1F	; 31
+  fa:	68 0f       	add	r22, r24
+  fc:	6c bf       	out	0x3c, r22	; 60
+  fe:	df cf       	rjmp	.-66     	; 0xbe <main+0x10>
+
+00000100 <TIME0_PWM_init>:
+* Purpose      : used to modify the pluse width
+* Parameters   : duty : 0-->100 ,DC = duty/100 -- OCR0 = (255 * DC)
+* Return value : void
+**************************************************************************/
+void TIME0_PWM_duty(uint8_t duty){
+	OCR0 =  duty * 2.55;
+ 100:	87 b3       	in	r24, 0x17	; 23
+ 102:	88 60       	ori	r24, 0x08	; 8
+ 104:	87 bb       	out	0x17, r24	; 23
+ 106:	83 b7       	in	r24, 0x33	; 51
+ 108:	81 60       	ori	r24, 0x01	; 1
+ 10a:	83 bf       	out	0x33, r24	; 51
+ 10c:	83 b7       	in	r24, 0x33	; 51
+ 10e:	82 60       	ori	r24, 0x02	; 2
+ 110:	83 bf       	out	0x33, r24	; 51
+ 112:	83 b7       	in	r24, 0x33	; 51
+ 114:	80 64       	ori	r24, 0x40	; 64
+ 116:	83 bf       	out	0x33, r24	; 51
+ 118:	83 b7       	in	r24, 0x33	; 51
+ 11a:	80 62       	ori	r24, 0x20	; 32
+ 11c:	83 bf       	out	0x33, r24	; 51
+ 11e:	08 95       	ret
+
+00000120 <__vector_11>:
+}
+
+ISR(TIMER0_OVF_vect){
+ 120:	1f 92       	push	r1
+ 122:	0f 92       	push	r0
+ 124:	0f b6       	in	r0, 0x3f	; 63
+ 126:	0f 92       	push	r0
+ 128:	11 24       	eor	r1, r1
+ 12a:	2f 93       	push	r18
+ 12c:	3f 93       	push	r19
+ 12e:	4f 93       	push	r20
+ 130:	5f 93       	push	r21
+ 132:	6f 93       	push	r22
+ 134:	7f 93       	push	r23
+ 136:	8f 93       	push	r24
+ 138:	9f 93       	push	r25
+ 13a:	af 93       	push	r26
+ 13c:	bf 93       	push	r27
+ 13e:	ef 93       	push	r30
+ 140:	ff 93       	push	r31
+	timer0_ovf_isr();
+ 142:	e0 91 60 00 	lds	r30, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 146:	f0 91 61 00 	lds	r31, 0x0061	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
+ 14a:	09 95       	icall
+}
+ 14c:	ff 91       	pop	r31
+ 14e:	ef 91       	pop	r30
+ 150:	bf 91       	pop	r27
+ 152:	af 91       	pop	r26
+ 154:	9f 91       	pop	r25
+ 156:	8f 91       	pop	r24
+ 158:	7f 91       	pop	r23
+ 15a:	6f 91       	pop	r22
+ 15c:	5f 91       	pop	r21
+ 15e:	4f 91       	pop	r20
+ 160:	3f 91       	pop	r19
+ 162:	2f 91       	pop	r18
+ 164:	0f 90       	pop	r0
+ 166:	0f be       	out	0x3f, r0	; 63
+ 168:	0f 90       	pop	r0
+ 16a:	1f 90       	pop	r1
+ 16c:	18 95       	reti
+
+0000016e <__vector_10>:
+
+ISR(TIMER0_COMP_vect){
+ 16e:	1f 92       	push	r1
+ 170:	0f 92       	push	r0
+ 172:	0f b6       	in	r0, 0x3f	; 63
+ 174:	0f 92       	push	r0
+ 176:	11 24       	eor	r1, r1
+ 178:	2f 93       	push	r18
+ 17a:	3f 93       	push	r19
+ 17c:	4f 93       	push	r20
+ 17e:	5f 93       	push	r21
+ 180:	6f 93       	push	r22
+ 182:	7f 93       	push	r23
+ 184:	8f 93       	push	r24
+ 186:	9f 93       	push	r25
+ 188:	af 93       	push	r26
+ 18a:	bf 93       	push	r27
+ 18c:	ef 93       	push	r30
+ 18e:	ff 93       	push	r31
+	timer0_comp_isr();
+ 190:	e0 91 62 00 	lds	r30, 0x0062	; 0x800062 <timer0_comp_isr>
+ 194:	f0 91 63 00 	lds	r31, 0x0063	; 0x800063 <timer0_comp_isr+0x1>
+ 198:	09 95       	icall
+ 19a:	ff 91       	pop	r31
+ 19c:	ef 91       	pop	r30
+ 19e:	bf 91       	pop	r27
+ 1a0:	af 91       	pop	r26
+ 1a2:	9f 91       	pop	r25
+ 1a4:	8f 91       	pop	r24
+ 1a6:	7f 91       	pop	r23
+ 1a8:	6f 91       	pop	r22
+ 1aa:	5f 91       	pop	r21
+ 1ac:	4f 91       	pop	r20
+ 1ae:	3f 91       	pop	r19
+ 1b0:	2f 91       	pop	r18
+ 1b2:	0f 90       	pop	r0
+ 1b4:	0f be       	out	0x3f, r0	; 63
+ 1b6:	0f 90       	pop	r0
+ 1b8:	1f 90       	pop	r1
+ 1ba:	18 95       	reti
+
+000001bc <__muluhisi3>:
+ 1bc:	0e 94 e9 00 	call	0x1d2	; 0x1d2 <__umulhisi3>
+ 1c0:	a5 9f       	mul	r26, r21
+ 1c2:	90 0d       	add	r25, r0
+ 1c4:	b4 9f       	mul	r27, r20
+ 1c6:	90 0d       	add	r25, r0
+ 1c8:	a4 9f       	mul	r26, r20
+ 1ca:	80 0d       	add	r24, r0
+ 1cc:	91 1d       	adc	r25, r1
+ 1ce:	11 24       	eor	r1, r1
+ 1d0:	08 95       	ret
+
+000001d2 <__umulhisi3>:
+ 1d2:	a2 9f       	mul	r26, r18
+ 1d4:	b0 01       	movw	r22, r0
+ 1d6:	b3 9f       	mul	r27, r19
+ 1d8:	c0 01       	movw	r24, r0
+ 1da:	a3 9f       	mul	r26, r19
+ 1dc:	70 0d       	add	r23, r0
+ 1de:	81 1d       	adc	r24, r1
+ 1e0:	11 24       	eor	r1, r1
+ 1e2:	91 1d       	adc	r25, r1
+ 1e4:	b2 9f       	mul	r27, r18
+ 1e6:	70 0d       	add	r23, r0
+ 1e8:	81 1d       	adc	r24, r1
+ 1ea:	11 24       	eor	r1, r1
+ 1ec:	91 1d       	adc	r25, r1
+ 1ee:	08 95       	ret
+
+000001f0 <_exit>:
+ 1f0:	f8 94       	cli
+
+000001f2 <__stop_program>:
+ 1f2:	ff cf       	rjmp	.-2      	; 0x1f2 <__stop_program>

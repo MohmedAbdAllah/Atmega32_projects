@@ -1,0 +1,262 @@
+
+Atmega32_TIMER0.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000001aa  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  0000021e  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000008  00800060  00800060  0000021e  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  0000021e  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000250  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000068  00000000  00000000  0000028c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000744  00000000  00000000  000002f4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000063a  00000000  00000000  00000a38  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   0000036a  00000000  00000000  00001072  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000128  00000000  00000000  000013dc  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000375  00000000  00000000  00001504  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000001f0  00000000  00000000  00001879  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000048  00000000  00000000  00001a69  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   8:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  10:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  14:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  18:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  1c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  20:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  24:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  28:	0c 94 ac 00 	jmp	0x158	; 0x158 <__vector_10>
+  2c:	0c 94 85 00 	jmp	0x10a	; 0x10a <__vector_11>
+  30:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  34:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  38:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  3c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  40:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  44:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  48:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  4c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  50:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_clear_bss>:
+  60:	20 e0       	ldi	r18, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	01 c0       	rjmp	.+2      	; 0x6a <.do_clear_bss_start>
+
+00000068 <.do_clear_bss_loop>:
+  68:	1d 92       	st	X+, r1
+
+0000006a <.do_clear_bss_start>:
+  6a:	a8 36       	cpi	r26, 0x68	; 104
+  6c:	b2 07       	cpc	r27, r18
+  6e:	e1 f7       	brne	.-8      	; 0x68 <.do_clear_bss_loop>
+  70:	0e 94 66 00 	call	0xcc	; 0xcc <main>
+  74:	0c 94 d3 00 	jmp	0x1a6	; 0x1a6 <_exit>
+
+00000078 <__bad_interrupt>:
+  78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000007c <COMP_isr>:
+cr  = count = 5.008
+*/
+//Interrupt compare function
+static void COMP_isr(void){
+	static uint32_t count = 0;
+	count++;
+  7c:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+  80:	90 91 61 00 	lds	r25, 0x0061	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
+  84:	a0 91 62 00 	lds	r26, 0x0062	; 0x800062 <__DATA_REGION_ORIGIN__+0x2>
+  88:	b0 91 63 00 	lds	r27, 0x0063	; 0x800063 <__DATA_REGION_ORIGIN__+0x3>
+  8c:	01 96       	adiw	r24, 0x01	; 1
+  8e:	a1 1d       	adc	r26, r1
+  90:	b1 1d       	adc	r27, r1
+  92:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
+  96:	90 93 61 00 	sts	0x0061, r25	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
+  9a:	a0 93 62 00 	sts	0x0062, r26	; 0x800062 <__DATA_REGION_ORIGIN__+0x2>
+  9e:	b0 93 63 00 	sts	0x0063, r27	; 0x800063 <__DATA_REGION_ORIGIN__+0x3>
+	if(count == 10){
+  a2:	8a 30       	cpi	r24, 0x0A	; 10
+  a4:	91 05       	cpc	r25, r1
+  a6:	a1 05       	cpc	r26, r1
+  a8:	b1 05       	cpc	r27, r1
+  aa:	11 f4       	brne	.+4      	; 0xb0 <COMP_isr+0x34>
+		SETBIT(PORTB,3);
+  ac:	c3 9a       	sbi	0x18, 3	; 24
+  ae:	08 95       	ret
+	}else if(count == 15){
+  b0:	0f 97       	sbiw	r24, 0x0f	; 15
+  b2:	a1 05       	cpc	r26, r1
+  b4:	b1 05       	cpc	r27, r1
+  b6:	49 f4       	brne	.+18     	; 0xca <COMP_isr+0x4e>
+		CLRBIT(PORTB,3);
+  b8:	c3 98       	cbi	0x18, 3	; 24
+		count = 0;
+  ba:	10 92 60 00 	sts	0x0060, r1	; 0x800060 <__DATA_REGION_ORIGIN__>
+  be:	10 92 61 00 	sts	0x0061, r1	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
+  c2:	10 92 62 00 	sts	0x0062, r1	; 0x800062 <__DATA_REGION_ORIGIN__+0x2>
+  c6:	10 92 63 00 	sts	0x0063, r1	; 0x800063 <__DATA_REGION_ORIGIN__+0x3>
+  ca:	08 95       	ret
+
+000000cc <main>:
+#include "TIMER0.h"
+static void COMP_isr(void);
+
+int main(void)
+{	
+	SETBIT(DDRB,3);
+  cc:	bb 9a       	sbi	0x17, 3	; 23
+	timer0_comp_isr = COMP_isr;//point to isr of compare match funtion
+  ce:	8e e3       	ldi	r24, 0x3E	; 62
+  d0:	90 e0       	ldi	r25, 0x00	; 0
+  d2:	90 93 67 00 	sts	0x0067, r25	; 0x800067 <timer0_comp_isr+0x1>
+  d6:	80 93 66 00 	sts	0x0066, r24	; 0x800066 <timer0_comp_isr>
+	TIME0_COMP_init(156);//configure time 0 compare match function
+  da:	8c e9       	ldi	r24, 0x9C	; 156
+  dc:	0e 94 71 00 	call	0xe2	; 0xe2 <TIME0_COMP_init>
+  e0:	ff cf       	rjmp	.-2      	; 0xe0 <main+0x14>
+
+000000e2 <TIME0_COMP_init>:
+	SETBIT(TCCR0,CS00);// NO PRESCALER -- PRESCALER when CS02 set
+	//SETBIT(TCCR0,CS02);// PRESCALER 1024
+	//SETBIT(TCCR0,CS01);// PRESCALER 64
+	SETBIT(TCCR0,FOC0);
+	SETBIT(TCCR0,COM00);
+	SETBIT(TCCR0,WGM01);//ENABLE COMPARE MATCH MODE
+  e2:	8c bf       	out	0x3c, r24	; 60
+  e4:	83 b7       	in	r24, 0x33	; 51
+  e6:	81 60       	ori	r24, 0x01	; 1
+  e8:	83 bf       	out	0x33, r24	; 51
+  ea:	83 b7       	in	r24, 0x33	; 51
+  ec:	84 60       	ori	r24, 0x04	; 4
+  ee:	83 bf       	out	0x33, r24	; 51
+  f0:	83 b7       	in	r24, 0x33	; 51
+  f2:	80 68       	ori	r24, 0x80	; 128
+  f4:	83 bf       	out	0x33, r24	; 51
+  f6:	83 b7       	in	r24, 0x33	; 51
+  f8:	88 60       	ori	r24, 0x08	; 8
+  fa:	83 bf       	out	0x33, r24	; 51
+  fc:	89 b7       	in	r24, 0x39	; 57
+  fe:	82 60       	ori	r24, 0x02	; 2
+ 100:	89 bf       	out	0x39, r24	; 57
+ 102:	8f b7       	in	r24, 0x3f	; 63
+ 104:	80 68       	ori	r24, 0x80	; 128
+ 106:	8f bf       	out	0x3f, r24	; 63
+ 108:	08 95       	ret
+
+0000010a <__vector_11>:
+	
+}
+ISR(TIMER0_OVF_vect){
+ 10a:	1f 92       	push	r1
+ 10c:	0f 92       	push	r0
+ 10e:	0f b6       	in	r0, 0x3f	; 63
+ 110:	0f 92       	push	r0
+ 112:	11 24       	eor	r1, r1
+ 114:	2f 93       	push	r18
+ 116:	3f 93       	push	r19
+ 118:	4f 93       	push	r20
+ 11a:	5f 93       	push	r21
+ 11c:	6f 93       	push	r22
+ 11e:	7f 93       	push	r23
+ 120:	8f 93       	push	r24
+ 122:	9f 93       	push	r25
+ 124:	af 93       	push	r26
+ 126:	bf 93       	push	r27
+ 128:	ef 93       	push	r30
+ 12a:	ff 93       	push	r31
+	timer0_ovf_isr();
+ 12c:	e0 91 64 00 	lds	r30, 0x0064	; 0x800064 <timer0_ovf_isr>
+ 130:	f0 91 65 00 	lds	r31, 0x0065	; 0x800065 <timer0_ovf_isr+0x1>
+ 134:	09 95       	icall
+}
+ 136:	ff 91       	pop	r31
+ 138:	ef 91       	pop	r30
+ 13a:	bf 91       	pop	r27
+ 13c:	af 91       	pop	r26
+ 13e:	9f 91       	pop	r25
+ 140:	8f 91       	pop	r24
+ 142:	7f 91       	pop	r23
+ 144:	6f 91       	pop	r22
+ 146:	5f 91       	pop	r21
+ 148:	4f 91       	pop	r20
+ 14a:	3f 91       	pop	r19
+ 14c:	2f 91       	pop	r18
+ 14e:	0f 90       	pop	r0
+ 150:	0f be       	out	0x3f, r0	; 63
+ 152:	0f 90       	pop	r0
+ 154:	1f 90       	pop	r1
+ 156:	18 95       	reti
+
+00000158 <__vector_10>:
+
+ISR(TIMER0_COMP_vect){
+ 158:	1f 92       	push	r1
+ 15a:	0f 92       	push	r0
+ 15c:	0f b6       	in	r0, 0x3f	; 63
+ 15e:	0f 92       	push	r0
+ 160:	11 24       	eor	r1, r1
+ 162:	2f 93       	push	r18
+ 164:	3f 93       	push	r19
+ 166:	4f 93       	push	r20
+ 168:	5f 93       	push	r21
+ 16a:	6f 93       	push	r22
+ 16c:	7f 93       	push	r23
+ 16e:	8f 93       	push	r24
+ 170:	9f 93       	push	r25
+ 172:	af 93       	push	r26
+ 174:	bf 93       	push	r27
+ 176:	ef 93       	push	r30
+ 178:	ff 93       	push	r31
+	timer0_comp_isr();
+ 17a:	e0 91 66 00 	lds	r30, 0x0066	; 0x800066 <timer0_comp_isr>
+ 17e:	f0 91 67 00 	lds	r31, 0x0067	; 0x800067 <timer0_comp_isr+0x1>
+ 182:	09 95       	icall
+ 184:	ff 91       	pop	r31
+ 186:	ef 91       	pop	r30
+ 188:	bf 91       	pop	r27
+ 18a:	af 91       	pop	r26
+ 18c:	9f 91       	pop	r25
+ 18e:	8f 91       	pop	r24
+ 190:	7f 91       	pop	r23
+ 192:	6f 91       	pop	r22
+ 194:	5f 91       	pop	r21
+ 196:	4f 91       	pop	r20
+ 198:	3f 91       	pop	r19
+ 19a:	2f 91       	pop	r18
+ 19c:	0f 90       	pop	r0
+ 19e:	0f be       	out	0x3f, r0	; 63
+ 1a0:	0f 90       	pop	r0
+ 1a2:	1f 90       	pop	r1
+ 1a4:	18 95       	reti
+
+000001a6 <_exit>:
+ 1a6:	f8 94       	cli
+
+000001a8 <__stop_program>:
+ 1a8:	ff cf       	rjmp	.-2      	; 0x1a8 <__stop_program>

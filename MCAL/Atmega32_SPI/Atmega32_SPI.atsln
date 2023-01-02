@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Atmel Studio Solution File, Format Version 11.00
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "Atmega32_SPI", "Atmega32_SPI\Atmega32_SPI.cproj", "{DCE6C7E3-EE26-4D79-826B-08594B9AD897}"
+EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "Atmaga32_TX", "Atmaga32_TX\Atmaga32_TX.cproj", "{DA7E6818-E6FB-4297-B1B3-BAF0BD73E696}"
+EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "Atmega32_RX", "Atmega32_RX\Atmega32_RX.cproj", "{F32BB758-A314-40D0-9871-521518F4F40C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCE6C7E3-EE26-4D79-826B-08594B9AD897}.Debug|AVR.ActiveCfg = Debug|AVR
+		{DCE6C7E3-EE26-4D79-826B-08594B9AD897}.Debug|AVR.Build.0 = Debug|AVR
+		{DCE6C7E3-EE26-4D79-826B-08594B9AD897}.Release|AVR.ActiveCfg = Release|AVR
+		{DCE6C7E3-EE26-4D79-826B-08594B9AD897}.Release|AVR.Build.0 = Release|AVR
+		{DA7E6818-E6FB-4297-B1B3-BAF0BD73E696}.Debug|AVR.ActiveCfg = Debug|AVR
+		{DA7E6818-E6FB-4297-B1B3-BAF0BD73E696}.Debug|AVR.Build.0 = Debug|AVR
+		{DA7E6818-E6FB-4297-B1B3-BAF0BD73E696}.Release|AVR.ActiveCfg = Release|AVR
+		{DA7E6818-E6FB-4297-B1B3-BAF0BD73E696}.Release|AVR.Build.0 = Release|AVR
+		{F32BB758-A314-40D0-9871-521518F4F40C}.Debug|AVR.ActiveCfg = Debug|AVR
+		{F32BB758-A314-40D0-9871-521518F4F40C}.Debug|AVR.Build.0 = Debug|AVR
+		{F32BB758-A314-40D0-9871-521518F4F40C}.Release|AVR.ActiveCfg = Release|AVR
+		{F32BB758-A314-40D0-9871-521518F4F40C}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
