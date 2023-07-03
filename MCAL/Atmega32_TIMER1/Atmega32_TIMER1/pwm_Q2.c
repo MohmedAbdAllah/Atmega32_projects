@@ -29,11 +29,11 @@ int main(void)
 		if(READBIT(PINA,0) == 0){
 			i = i + 10;
 			while(READBIT(PINA,0) == 0);
-			} 
+		} 
 		if(READBIT(PINA,1) == 0){
 			i = i - 10;
 			while(READBIT(PINA,1) == 0);
-			}  
+		}  
 		
 	}
 }

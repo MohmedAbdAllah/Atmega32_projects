@@ -40,7 +40,7 @@ C_SRCS +=  \
 ../EX_INTERRUPT.c \
 ../LCD.c \
 ../TIMER1.c \
-../TIMER_Q6\ -\ 1.c
+../TIMER_Q6.c
 
 
 PREPROCESSING_SRCS += 
@@ -53,25 +53,25 @@ OBJS +=  \
 EX_INTERRUPT.o \
 LCD.o \
 TIMER1.o \
-TIMER_Q6\ -\ 1.o
+TIMER_Q6.o
 
 OBJS_AS_ARGS +=  \
 EX_INTERRUPT.o \
 LCD.o \
 TIMER1.o \
-"TIMER_Q6 - 1.o"
+TIMER_Q6.o
 
 C_DEPS +=  \
 EX_INTERRUPT.d \
 LCD.d \
 TIMER1.d \
-TIMER_Q6\ -\ 1.d
+TIMER_Q6.d
 
 C_DEPS_AS_ARGS +=  \
 EX_INTERRUPT.d \
 LCD.d \
 TIMER1.d \
-"TIMER_Q6 - 1.d"
+TIMER_Q6.d
 
 OUTPUT_FILE_PATH +=Atmega32_TIMER1.elf
 
@@ -108,7 +108,7 @@ LINKER_SCRIPT_DEP+=
 	@echo Finished building: $<
 	
 
-./TIMER_Q6\ -\ 1.o: .././TIMER_Q6\ -\ 1.c
+./TIMER_Q6.o: .././TIMER_Q6.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

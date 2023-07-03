@@ -14,18 +14,14 @@ extern void (*SPI_stc_vect)(void);
 * Return value : void
 **************************************************************************/
 void SPI_init_master(void){
-	SETBIT(DDRB,PIND4);
-	SETBIT(DDRB,PIND5);
-	CLRBIT(DDRB,PIND6);
-	SETBIT(DDRB,PIND7);
-	
-	//SETBIT(SPCR,SPR0);
-	//SETBIT(SPCR,SPR1);
-	//SETBIT(SPSR,SPI2X);
-	
-	//SETBIT(SPCR,MSTR);
-	//SETBIT(SPCR,SPE);
-	SPCR = 0x50;
+	/* SS ,Set MOSI and SCK output, all others input */
+	SETBIT(DDRB,MOSI);
+	SETBIT(DDRB,SCK);
+	SETBIT(DDRB,PB4);
+	/* Enable SPI, Master, set clock rate fck/16 */
+	SETBIT(SPCR,SPR0);
+	SETBIT(SPCR,MSTR);
+	SETBIT(SPCR,SPE);
 	
 	
 }
@@ -36,20 +32,13 @@ void SPI_init_master(void){
 * Return value : void
 **************************************************************************/
 void SPI_init_slave(void){
-	CLRBIT(DDRB,PIND4);
-	CLRBIT(DDRB,PIND5);
+	/* Set MISO output, all others input */
 	SETBIT(DDRB,PIND6);
-	CLRBIT(DDRB,PIND7);
-	
-	//SETBIT(SPCR,SPR0);
-	//SETBIT(SPCR,SPR1);
-	//SETBIT(SPSR,SPI2X);
-	
-	//CLRBIT(SPCR,MSTR);
+	// ENABLE SPI
 	SETBIT(SPCR,SPE);
-	//SPCR = 0x50;
+	// ENABLE GLOBAL INTERRUPT
 	SETBIT(SPCR,SPIE);
-	SETBIT(SREG,7);// ENABLE GLOBAL INTERRUPT
+	SETBIT(SREG,7);
 }
 /**************************************************************************
 * Function Name: SPI_mo

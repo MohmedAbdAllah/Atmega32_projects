@@ -1,5 +1,4 @@
-TIMER_Q6 - 1.d TIMER_Q6 - 1.o: .././TIMER_Q6\ -\ 1.c .././TIMER1.h \
- .././std_macros.h \
+TIMER_Q6.d TIMER_Q6.o: .././TIMER_Q6.c .././TIMER1.h .././std_macros.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sfr_defs.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\inttypes.h \
@@ -15,7 +14,7 @@ TIMER_Q6 - 1.d TIMER_Q6 - 1.o: .././TIMER_Q6\ -\ 1.c .././TIMER1.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h \
- .././LCD.h .././EX_INTERRUPT.h
+ .././LCD.h
 
 .././TIMER1.h:
 
@@ -52,5 +51,3 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h:
 
 .././LCD.h:
-
-.././EX_INTERRUPT.h:

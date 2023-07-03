@@ -24,6 +24,7 @@ int main(void)
 			SETBIT(PORTB,0);
 			_delay_ms(100);
 			CLRBIT(PORTB,0);
+			_delay_ms(100);
 			inc = 1;
 		}
 		else if((READBIT(PINA,1) == 1)&&(inc == 1)){
@@ -34,6 +35,7 @@ int main(void)
 			SETBIT(PORTB,0);
 			_delay_ms(500);
 			CLRBIT(PORTB,0);
+			_delay_ms(500);
 			inc = 3;
 		}
 		else if((READBIT(PINA,1) == 1)&&(inc == 3)){

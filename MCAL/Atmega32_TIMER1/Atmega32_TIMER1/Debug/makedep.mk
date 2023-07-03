@@ -8,5 +8,5 @@ LCD.c
 
 TIMER1.c
 
-TIMER_Q6 - 1.c
+TIMER_Q6.c
 

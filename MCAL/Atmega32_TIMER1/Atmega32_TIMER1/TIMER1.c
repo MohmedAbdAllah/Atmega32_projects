@@ -7,12 +7,27 @@
 #include "TIMER1.h"
 void (*timer1_InCapture_isr)(void) = 0;
 /**************************************************************************
+* Function Name: TIME1_NORMAL_init
+* Purpose      : Configure timer 1 OC1A as Normal
+* Parameters   : void
+* Return value : void
+**************************************************************************/
+void TIME1_NORMAL_init(void){
+	//configure as no prescaling
+	SETBIT(TCCR1B,CS10);
+
+	//configure as normal
+	CLRBIT(TCCR1B,WGM12);
+	CLRBIT(TCCR1A,WGM11);
+	CLRBIT(TCCR1A,WGM10);
+}
+/**************************************************************************
 * Function Name: TIME1_PWM_oc1A_init
 * Purpose      : Configure timer 1 OC1A in PWM "fast freq" (10 bit,non inverting, no prescaling)
 * Parameters   : void
 * Return value : void
 **************************************************************************/
-void TIME1_NORMAL_init(void){
+void TIME1_PWM_oc1A_init(void){
 	//Configure as output
 	SETBIT(DDRD,5);
 	//configure as no prescaling
@@ -21,8 +36,8 @@ void TIME1_NORMAL_init(void){
 	SETBIT(TCCR1A,COM1A1);
 	//configure as fast PWM 10 bits
 	CLRBIT(TCCR1B,WGM12);
-	CLRBIT(TCCR1A,WGM11);
-	CLRBIT(TCCR1A,WGM10);
+	SETBIT(TCCR1A,WGM11);
+	SETBIT(TCCR1A,WGM10);
 }
 /**************************************************************************
 * Function Name: TIME1_PWM_oc1A_duty

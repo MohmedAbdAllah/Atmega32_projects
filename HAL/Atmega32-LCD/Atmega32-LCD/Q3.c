@@ -18,7 +18,7 @@ int main(void)
     { 
 		LCD_write_command(0x80);
 		LCD_write_num(incr);
-		_delay_ms(300);
+		_delay_ms(1000);
 		incr++;
 		if(incr == 256) incr = 0;
     }

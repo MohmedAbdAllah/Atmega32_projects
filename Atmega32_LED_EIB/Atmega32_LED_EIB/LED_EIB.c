@@ -12,10 +12,6 @@ int main(void)
 {
     /* Replace with your application code */
 	
-	// Configure External Interrupt INT0
-	SETBIT(SREG, 7);
-	SETBIT(GICR, 6);
-	
 	// Enable falling Edge at INT0
 	CLRBIT(MCUCR, 0);
 	SETBIT(MCUCR, 1);
@@ -25,6 +21,11 @@ int main(void)
 	SETBIT(PORTD, 2);
 	//Making PB0 output
 	SETBIT(DDRB, 0);
+
+	// Configure External Interrupt INT0
+	SETBIT(GICR, 6);
+	SETBIT(SREG, 7);
+
 	
     while (1) 
     {

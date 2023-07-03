@@ -129,7 +129,7 @@
     <Compile Include="TIMER1.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="TIMER_Q6 - 1.c">
+    <Compile Include="TIMER_Q6.c">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

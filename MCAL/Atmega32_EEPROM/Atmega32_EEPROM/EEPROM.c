@@ -31,6 +31,13 @@ void EEPROM_write(uint16_t location ,uint16_t data){
 	while(READBIT(EECR,EEWE)== 1);
 	EEAR = location;
 	EEDR = data;
-	SETBIT(EECR,EEMWE);
-	SETBIT(EECR,EEWE);
+	if(READBIT(SREG,7)){
+		CLRBIT(SREG,7);
+		SETBIT(EECR,EEMWE);
+		SETBIT(EECR,EEWE);
+		SETBIT(SREG,7);
+	}else{
+		SETBIT(EECR,EEMWE);
+		SETBIT(EECR,EEWE);
+	}
 }

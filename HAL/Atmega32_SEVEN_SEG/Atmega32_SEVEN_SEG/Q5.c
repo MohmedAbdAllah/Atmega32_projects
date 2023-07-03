@@ -30,7 +30,7 @@ int main(void)
 		}
 		
 		if(x > 99) x = 0;
-		else if(x < 0) x = 98;
+		else if(x < 0) x = 99;
 		
 	}
 }

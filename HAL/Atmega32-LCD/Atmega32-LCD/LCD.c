@@ -183,10 +183,9 @@ void LCD_write_num(uint32_t num){
 		arr_num[i] = num % 10 + 48;
 		num /= 10;
 	}
-	i--;
 	while(i >= 0){
-		LCD_write_data(arr_num[i]);
 		i--;
+		LCD_write_data(arr_num[i]);
 	}
 }
 

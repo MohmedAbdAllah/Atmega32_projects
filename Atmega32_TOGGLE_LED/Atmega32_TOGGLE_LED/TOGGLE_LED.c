@@ -11,7 +11,7 @@
 int main(void)
 {
     /* Replace with your application code */
-	uint8_t inc = 2, x = 0;
+	uint8_t inc = 2;
 	CLRBIT(DDRA,1);
 	SETBIT(PORTA,1);
 	
@@ -23,13 +23,13 @@ int main(void)
 		if((READBIT(PINA,1) == 0)&&(inc == 2)){
 			SETBIT(PORTB,0);
 			inc = 1;
-			while(x == READBIT(PINA,PINA1));
+			while(!READBIT(PINA,PINA1));
 		}
 		
 		if((READBIT(PINA,1) == 0)&&(inc == 1)){
 			CLRBIT(PORTB,0);
 			inc = 2;
-			while(x == READBIT(PINA,PINA1));
+			while(!READBIT(PINA,PINA1));
 		}
 	}
 }

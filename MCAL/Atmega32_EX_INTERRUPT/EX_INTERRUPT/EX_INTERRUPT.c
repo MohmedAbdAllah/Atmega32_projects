@@ -10,12 +10,11 @@ extern void (*INT1_vect_isr)(void);
 /**************************************************************************
 * Function Name: EI_INT0_init
 * Purpose      : Configure External Interrupt 0
-* Parameters   : mode(low level ,falling ,rising ,logical change)
+* Parameters   : mode('l'ow level ,'f'alling ,'r'ising ,logical 'c'hange)
 * Return value : void
 **************************************************************************/
 void EI_INT0_init(uint8_t mode){
 	// Configure External Interrupt INT0
-	SETBIT(SREG, 7);
 	SETBIT(GICR, 6);
 	
 	//select mode
@@ -40,17 +39,19 @@ void EI_INT0_init(uint8_t mode){
 		SETBIT(MCUCR, 0);
 		SETBIT(MCUCR, 1);
 	}
+	SETBIT(SREG, 7);
+
 }
 
 /**************************************************************************
 * Function Name: EI_INT1_init
 * Purpose      : Configure External Interrupt 1
-* Parameters   : mode(low level ,falling ,rising ,logical change)
+* Parameters   : mode('l'ow level ,'f'alling ,'r'ising ,logical 'c'hange)
 * Return value : void
 **************************************************************************/
 void EI_INT1_init(uint8_t mode){
 	// Configure External Interrupt INT1
-	SETBIT(SREG, 7);
+	
 	SETBIT(GICR, 7);
 	
 	//select mode
@@ -75,6 +76,7 @@ void EI_INT1_init(uint8_t mode){
 		SETBIT(MCUCR, 2);
 		SETBIT(MCUCR, 3);
 	}
+	SETBIT(SREG, 7);
 }
 
 
